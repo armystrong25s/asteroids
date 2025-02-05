@@ -1,8 +1,9 @@
 import pygame
 from constants import PLAYER_TURN_SPEED, PLAYER_SPEED
 
-class Player:
+class Player(pygame.sprite.Sprite):
     def __init__(self, x, y, radius, color):
+        super().__init__()
         self.x = x
         self.y = y
         self.radius = radius

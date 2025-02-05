@@ -12,6 +12,12 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
+    updateable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+
+    updateable.add(player)
+    drawable.add(player)
+
     clock = pygame.time.Clock()
     dt = 0
 
@@ -22,8 +28,10 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
         
-        player.update(dt)  # Update the player
-        player.draw(screen)  # Re-render the player
+        updateable.update(dt)  # Update all updatables
+        for drawable_obj in drawable:
+            drawable_obj.draw(screen)  # Draw all drawables
+
         pygame.display.flip()  # Update the screen
         clock.tick(60)  # 60 FPS
         dt = clock.get_time() / 1000  # in seconds
