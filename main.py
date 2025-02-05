@@ -22,6 +22,7 @@ def main():
             if event.type == pygame.QUIT:
                 running = False
         
+        player.update(dt)  # Update the player
         player.draw(screen)  # Re-render the player
         pygame.display.flip()  # Update the screen
         clock.tick(60)  # 60 FPS

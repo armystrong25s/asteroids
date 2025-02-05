@@ -1,4 +1,5 @@
 import pygame
+from constants import PLAYER_TURN_SPEED
 
 class Player:
     def __init__(self, x, y, radius, color):
@@ -7,6 +8,18 @@ class Player:
         self.radius = radius
         self.color = color
         self.rotation = 0
+        
+    def rotate(self, dt):
+        self.rotation += PLAYER_TURN_SPEED * dt
+        self.rotation %= 360
+
+    def update(self, dt):
+        keys = pygame.key.get_pressed()
+
+        if keys[pygame.K_a]:
+            self.rotate(-dt)
+        if keys[pygame.K_d]:
+            self.rotate(dt)
 
     def triangle(self):
         forward = pygame.Vector2(0, 1).rotate(self.rotation)
