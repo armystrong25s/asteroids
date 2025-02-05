@@ -1,10 +1,10 @@
 import pygame
-
 from constants import *
+from player import Player
 
 def main():
     pygame.init()
-    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT)) 
+    screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
 
     player = Player(SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2, PLAYER_RADIUS, "white")  # Create player object             
 
@@ -18,10 +18,11 @@ def main():
     running = True
     while running:
         screen.fill((0, 0, 0))
-        for event in pygame.event.get():    # User did something
-            if event.type == pygame.QUIT:   # If user clicked close
-                return
-        player.draw(screen) 
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                running = False
+        
+        player.draw(screen)  # Re-render the player
         pygame.display.flip()  # Update the screen
         clock.tick(60)  # 60 FPS
         dt = clock.get_time() / 1000  # in seconds
