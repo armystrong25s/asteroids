@@ -10,13 +10,18 @@ def main():
     print(f"Screen width: {SCREEN_WIDTH}")
     print(f"Screen height: {SCREEN_HEIGHT}")
 
+    clock = pygame.time.Clock()
+    dt = 0
+
     running = True
     while running:
         screen.fill((0, 0, 0))
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
+        for event in pygame.event.get():    # User did something
+            if event.type == pygame.QUIT:   # If user clicked close
                 return
-        pygame.display.flip()
+        pygame.display.flip()  # Update the screen
+        clock.tick(60)  # 60 FPS
+        dt = clock.get_time() / 1000  # in seconds
 
 if __name__ == "__main__":
     main()
